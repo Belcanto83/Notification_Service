@@ -14,7 +14,7 @@ def index(request):
 
 
 def api_documentation(request):
-    return redirect('https://app.swaggerhub.com/apis/FAREGO83_1/notification-service-api/1.0.0#/')
+    return redirect('https://app.swaggerhub.com/apis-docs/FAREGO83_1/notification-service-api/1.0.0#/')
 
 
 class ClientViewSet(ModelViewSet):

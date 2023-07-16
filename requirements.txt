@@ -7,3 +7,5 @@ celery
 redis
 requests
 pytz
+pytest-django
+model_bakery
