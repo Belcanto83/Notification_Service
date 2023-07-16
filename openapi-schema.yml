@@ -1,0 +1,764 @@
+openapi: 3.0.2
+info:
+  title: ''
+  version: ''
+paths:
+  /api/v1/clients/:
+    get:
+      operationId: listClients
+      description: ''
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: phone
+        required: false
+        in: query
+        description: phone
+        schema:
+          type: string
+      - name: mobile_operator_code
+        required: false
+        in: query
+        description: mobile_operator_code
+        schema:
+          type: string
+      - name: q
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      - name: o
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=4
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=2
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Client'
+          description: ''
+      tags:
+      - api
+    post:
+      operationId: createClient
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Client'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Client'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Client'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+          description: ''
+      tags:
+      - api
+  /api/v1/clients/{id}/:
+    get:
+      operationId: retrieveClient
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this client.
+        schema:
+          type: string
+      - name: phone
+        required: false
+        in: query
+        description: phone
+        schema:
+          type: string
+      - name: mobile_operator_code
+        required: false
+        in: query
+        description: mobile_operator_code
+        schema:
+          type: string
+      - name: q
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      - name: o
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+          description: ''
+      tags:
+      - api
+    put:
+      operationId: updateClient
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this client.
+        schema:
+          type: string
+      - name: phone
+        required: false
+        in: query
+        description: phone
+        schema:
+          type: string
+      - name: mobile_operator_code
+        required: false
+        in: query
+        description: mobile_operator_code
+        schema:
+          type: string
+      - name: q
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      - name: o
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Client'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Client'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Client'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+          description: ''
+      tags:
+      - api
+    patch:
+      operationId: partialUpdateClient
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this client.
+        schema:
+          type: string
+      - name: phone
+        required: false
+        in: query
+        description: phone
+        schema:
+          type: string
+      - name: mobile_operator_code
+        required: false
+        in: query
+        description: mobile_operator_code
+        schema:
+          type: string
+      - name: q
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      - name: o
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Client'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Client'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Client'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+          description: ''
+      tags:
+      - api
+    delete:
+      operationId: destroyClient
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this client.
+        schema:
+          type: string
+      - name: phone
+        required: false
+        in: query
+        description: phone
+        schema:
+          type: string
+      - name: mobile_operator_code
+        required: false
+        in: query
+        description: mobile_operator_code
+        schema:
+          type: string
+      - name: q
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      - name: o
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - api
+  /api/v1/mailings/:
+    get:
+      operationId: listMailings
+      description: ''
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: start_time
+        required: false
+        in: query
+        description: start_time
+        schema:
+          type: string
+      - name: finish_time
+        required: false
+        in: query
+        description: finish_time
+        schema:
+          type: string
+      - name: text
+        required: false
+        in: query
+        description: text
+        schema:
+          type: string
+      - name: ordering
+        required: false
+        in: query
+        description: !!python/object/apply:django.utils.functional._lazy_proxy_unpickle
+        - !!python/name:django.utils.translation.gettext ''
+        - !!python/tuple
+          - Ordering
+        - {}
+        - !!python/name:builtins.str ''
+        schema:
+          type: string
+          enum:
+          - start_time
+          - -start_time
+          - finish_time
+          - -finish_time
+      - name: q
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      - name: o
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=4
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=2
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Mailing'
+          description: ''
+      tags:
+      - api
+    post:
+      operationId: createMailing
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Mailing'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Mailing'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Mailing'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mailing'
+          description: ''
+      tags:
+      - api
+  /api/v1/mailings/statistics/:
+    get:
+      operationId: statisticsMailing
+      description: ":param request:\n:param pk:\n:return: Response\n\n\u0424\u043E\
+        \u0440\u043C\u0438\u0440\u0443\u0435\u043C \u043E\u0431\u0449\u0443\u044E\
+        \ \u0441\u0442\u0430\u0442\u0438\u0441\u0442\u0438\u043A\u0443 \u043F\u043E\
+        \ \u0432\u0441\u0435\u043C \u0440\u0430\u0441\u0441\u044B\u043B\u043A\u0430\
+        \u043C \u0441 \u0433\u0440\u0443\u043F\u043F\u0438\u0440\u043E\u0432\u043A\
+        \u043E\u0439 \u043F\u043E \u0441\u0442\u0430\u0442\u0443\u0441\u0430\u043C\
+        \ \u0441\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u0439"
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mailing'
+          description: ''
+      tags:
+      - api
+  /api/v1/mailings/{id}/:
+    get:
+      operationId: retrieveMailing
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this mailing.
+        schema:
+          type: string
+      - name: start_time
+        required: false
+        in: query
+        description: start_time
+        schema:
+          type: string
+      - name: finish_time
+        required: false
+        in: query
+        description: finish_time
+        schema:
+          type: string
+      - name: text
+        required: false
+        in: query
+        description: text
+        schema:
+          type: string
+      - name: ordering
+        required: false
+        in: query
+        description: !!python/object/apply:django.utils.functional._lazy_proxy_unpickle
+        - !!python/name:django.utils.translation.gettext ''
+        - !!python/tuple
+          - Ordering
+        - {}
+        - !!python/name:builtins.str ''
+        schema:
+          type: string
+          enum:
+          - start_time
+          - -start_time
+          - finish_time
+          - -finish_time
+      - name: q
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      - name: o
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mailing'
+          description: ''
+      tags:
+      - api
+    put:
+      operationId: updateMailing
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this mailing.
+        schema:
+          type: string
+      - name: start_time
+        required: false
+        in: query
+        description: start_time
+        schema:
+          type: string
+      - name: finish_time
+        required: false
+        in: query
+        description: finish_time
+        schema:
+          type: string
+      - name: text
+        required: false
+        in: query
+        description: text
+        schema:
+          type: string
+      - name: ordering
+        required: false
+        in: query
+        description: !!python/object/apply:django.utils.functional._lazy_proxy_unpickle
+        - !!python/name:django.utils.translation.gettext ''
+        - !!python/tuple
+          - Ordering
+        - {}
+        - !!python/name:builtins.str ''
+        schema:
+          type: string
+          enum:
+          - start_time
+          - -start_time
+          - finish_time
+          - -finish_time
+      - name: q
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      - name: o
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Mailing'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Mailing'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Mailing'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mailing'
+          description: ''
+      tags:
+      - api
+    patch:
+      operationId: partialUpdateMailing
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this mailing.
+        schema:
+          type: string
+      - name: start_time
+        required: false
+        in: query
+        description: start_time
+        schema:
+          type: string
+      - name: finish_time
+        required: false
+        in: query
+        description: finish_time
+        schema:
+          type: string
+      - name: text
+        required: false
+        in: query
+        description: text
+        schema:
+          type: string
+      - name: ordering
+        required: false
+        in: query
+        description: !!python/object/apply:django.utils.functional._lazy_proxy_unpickle
+        - !!python/name:django.utils.translation.gettext ''
+        - !!python/tuple
+          - Ordering
+        - {}
+        - !!python/name:builtins.str ''
+        schema:
+          type: string
+          enum:
+          - start_time
+          - -start_time
+          - finish_time
+          - -finish_time
+      - name: q
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      - name: o
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Mailing'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Mailing'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Mailing'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mailing'
+          description: ''
+      tags:
+      - api
+    delete:
+      operationId: destroyMailing
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this mailing.
+        schema:
+          type: string
+      - name: start_time
+        required: false
+        in: query
+        description: start_time
+        schema:
+          type: string
+      - name: finish_time
+        required: false
+        in: query
+        description: finish_time
+        schema:
+          type: string
+      - name: text
+        required: false
+        in: query
+        description: text
+        schema:
+          type: string
+      - name: ordering
+        required: false
+        in: query
+        description: !!python/object/apply:django.utils.functional._lazy_proxy_unpickle
+        - !!python/name:django.utils.translation.gettext ''
+        - !!python/tuple
+          - Ordering
+        - {}
+        - !!python/name:builtins.str ''
+        schema:
+          type: string
+          enum:
+          - start_time
+          - -start_time
+          - finish_time
+          - -finish_time
+      - name: q
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      - name: o
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - api
+  /api/v1/mailings/{id}/detailed_statistics/:
+    get:
+      operationId: detailedStatisticsMailing
+      description: ":param request:\n:param pk:\n:return: Response\n\n\u0424\u043E\
+        \u0440\u043C\u0438\u0440\u0443\u0435\u043C \u0434\u0435\u0442\u0430\u043B\u044C\
+        \u043D\u0443\u044E \u0441\u0442\u0430\u0442\u0438\u0441\u0442\u0438\u043A\u0443\
+        \ \u043F\u043E \u0442\u0435\u043A\u0443\u0449\u0435\u0439 \u0440\u0430\u0441\
+        \u0441\u044B\u043B\u043A\u0435 \u0441 \u0433\u0440\u0443\u043F\u043F\u0438\
+        \u0440\u043E\u0432\u043A\u043E\u0439 \u043F\u043E \u0441\u0442\u0430\u0442\
+        \u0443\u0441\u0430\u043C \u0441\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u0439"
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this mailing.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mailing'
+          description: ''
+      tags:
+      - api
+components:
+  schemas:
+    Client:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        phone:
+          type: integer
+          maximum: 9223372036854775807
+          format: int64
+          minimum: 0
+        mobile_operator_code:
+          type: integer
+          maximum: 32767
+          minimum: 0
+        tag:
+          type: string
+          maxLength: 100
+        time_zone:
+          type: string
+          maxLength: 50
+      required:
+      - phone
+      - mobile_operator_code
+      - tag
+      - time_zone
+    Mailing:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        start_time:
+          type: string
+          format: date-time
+        text:
+          type: string
+        client_filter:
+          type: object
+        finish_time:
+          type: string
+          format: date-time
+      required:
+      - start_time
+      - text
+      - client_filter
+      - finish_time

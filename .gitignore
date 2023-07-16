@@ -1,0 +1,9 @@
+.env
+.idea/
+/venv
+__pycache__
+*.pyc
+celery_start.txt
+celerybeat-schedule.bak
+celerybeat-schedule.dat
+celerybeat-schedule.dir
