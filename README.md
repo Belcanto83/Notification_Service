@@ -48,7 +48,7 @@
 1. Клонировать репозиторий проекта
 
 ```bash
-git clone https://...
+git clone https://github.com/Belcanto83/Notification_Service.git
 ```
 
 2. Перейти в папку проекта, активировать виртуальное окружение и установить зависимости:
