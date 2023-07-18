@@ -130,6 +130,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -150,7 +151,7 @@ REST_FRAMEWORK = {
 }
 
 # Celery (Redis) related settings
-REDIS_HOST = '127.0.0.1'
+REDIS_HOST = 'redis_db'
 REDIS_PORT = '6379'
 CELERY_BROKER_URL = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/1'
 # CELERY_BROKER_TRANSPORT_OPTIONS = {'visibility_timeout': 3600}
