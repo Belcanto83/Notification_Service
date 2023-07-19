@@ -58,7 +58,7 @@ git clone https://github.com/Belcanto83/Notification_Service.git
 pip install -r requirements.txt
 ```
 
-3. В корне проекта создать файл `.env` и указать в нём переменные окружения:
+3. В корне проекта создать файл `.env.without_docker` и указать в нём переменные окружения:
 
 ```base
 SECRET_KEY=...
@@ -70,59 +70,91 @@ DB_PASSWORD=...
 DB_HOST=localhost
 DB_PORT=5432
 API_TOKEN=...
+REDIS_HOST=localhost
 ```
 
-4. Создать базу данных (БД) в PostgreSQL с именем **notification_service**:
+4. В файле `notification_service/settings.py` выполнить настройку соответствующего окружения:
+
+```
+load_dotenv('.env.without_docker')
+```
+
+5. Создать базу данных (БД) в PostgreSQL с именем **notification_service**:
 
 ```bash
 createdb -U <username> notification_service
 ```
 
-5. Применить миграции к БД:
+6. Применить миграции к БД:
 
 ```bash
 python manage.py migrate
 ```
 
-6. Выполнить команду:
+7. Выполнить команду:
 
 ```bash
-docker-compose up -d
+docker-compose -f docker-compose-redis.yml up -d
 ```
 
-7. Выполнить команду:
+8. Выполнить команду:
 
 ```bash
 celery -A notification_service worker -l info # Linux
 celery -A notification_service worker -l info -P threads # Windows
 ```
 
-8. Выполнить команду:
+9. Выполнить команду:
 
 ```bash
 python manage.py runserver
 ```
 
-9. Выполнить команду:
+10. Выполнить команду:
 
 ```bash
 celery -A notification_service beat -l info
 ```
 
 ## Запуск проекта с использованием `Docker`
-1. Запуск всех контейнеров одной командой:
+
+1. В корне проекта создать файл `.env` и указать в нём переменные окружения:
+
+```base
+SECRET_KEY=...
+DEBUG=True
+DB_ENGINE=django.db.backends.postgresql
+DB_NAME=notification_service
+DB_USER=...
+DB_PASSWORD=...
+DB_HOST=postgresql_db
+DB_PORT=5432
+API_TOKEN=...
+
+REDIS_HOST=redis_db
+BROKER=redis://redis_db:6379/1
+BACKEND=redis://redis_db:6379/2
+```
+
+2. В файле `notification_service/settings.py` выполнить настройку соответствующего окружения:
+
+```
+load_dotenv('.env')
+```
+
+3. Запуск всех контейнеров одной командой:
 
 ```bash
 docker-compose up -d [--build]
 ```
 
-2. Проверка всех логов (или по конкретному имени контейнера):
+4. Проверка всех логов (или по конкретному имени сервиса):
 
 ```bash
-docker-compose logs [<container_name>]
+docker-compose logs [<service_name>]
 ```
 
-3. Остановка всех контейнеров и удаление всех созданных `volumes`:
+5. Остановка всех контейнеров и удаление всех созданных `volumes`:
 
 ```bash
 docker-compose down -v
