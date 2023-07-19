@@ -101,7 +101,7 @@ def scheduler_service():
 def send_email_with_statistics():
     send_mail(
         'FYI',
-        'Привет! Как дела?',
+        'Test email',
         os.getenv('SEND_FROM'),
         [os.getenv('SEND_TO')],
     )
