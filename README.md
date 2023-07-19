@@ -45,7 +45,7 @@
 
 Для запуска проекта необходимо:
 
-1. Клонировать репозиторий проекта
+1. Клонировать репозиторий проекта:
 
 ```bash
 git clone https://github.com/Belcanto83/Notification_Service.git
@@ -107,4 +107,23 @@ python manage.py runserver
 
 ```bash
 celery -A notification_service beat -l info
+```
+
+## Запуск проекта с использованием `Docker`
+1. Запуск всех контейнеров одной командой:
+
+```bash
+docker-compose up -d [--build]
+```
+
+2. Проверка всех логов (или по конкретному имени контейнера):
+
+```bash
+docker-compose logs [<container_name>]
+```
+
+3. Остановка всех контейнеров и удаление всех созданных `volumes`:
+
+```bash
+docker-compose down -v
 ```

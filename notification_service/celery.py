@@ -22,4 +22,8 @@ app.conf.beat_schedule = {
         'task': 'notification_app.tasks.periodic_task',
         'schedule': crontab(minute='*/1'),
     },
+    'send_email_every_5_minutes': {
+        'task': 'notification_app.tasks.send_periodic_email',
+        'schedule': crontab(minute='*/5'),
+    },
 }

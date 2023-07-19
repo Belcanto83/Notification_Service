@@ -3,6 +3,7 @@ import pytz
 import datetime
 import requests
 import os
+from django.core.mail import send_mail
 from django.conf import settings
 
 from .models import Message
@@ -95,6 +96,15 @@ def scheduler_service():
         url = f'{base_url}/{message.client.id}'
         send_message(url, headers, json_data, message)
     # TODO 04: Если время рассылки истекло, изменить статус соответствующих сообщений на "EXPIRED"
+
+
+def send_email_with_statistics():
+    send_mail(
+        'FYI',
+        'Привет! Как дела?',
+        os.getenv('SEND_FROM'),
+        [os.getenv('SEND_TO')],
+    )
 
 
 # TODO 03: Поместить функции (выше) в класс MailingService

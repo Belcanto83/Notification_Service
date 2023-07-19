@@ -1,6 +1,6 @@
 from notification_service.celery import app
 
-from .mailing_sender import test_1, mailing_service, scheduler_service
+from .mailing_sender import test_1, mailing_service, scheduler_service, send_email_with_statistics
 
 
 @app.task
@@ -18,3 +18,8 @@ def schedule_mailing(**kwargs):
 @app.task
 def periodic_task():
     scheduler_service()
+
+
+@app.task
+def send_periodic_email():
+    send_email_with_statistics()
